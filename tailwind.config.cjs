@@ -131,6 +131,7 @@ module.exports = {
 	},
 	plugins: [
 		require('tailwind-css-variables')(),
+		require('@tailwindcss/custom-forms'),
 		function ({ addUtilities }) {
 			return addUtilities({
 				['.border-box']: {

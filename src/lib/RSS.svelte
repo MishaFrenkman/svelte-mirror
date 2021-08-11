@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import timer from './utils/timer';
 
 	const ARTICLE_INTERVAL = 1000 * 60 * 60;
 	const REPLACE_INTERVAL = 1000 * 30;
@@ -26,19 +27,16 @@
 
 	const replacArticle = () => (articleIndex = (articleIndex + 1) % articles.length);
 
-	let interval = setInterval(fetchRSS, ARTICLE_INTERVAL);
-	let timeInterval = setInterval(replacArticle, REPLACE_INTERVAL);
+	timer(fetchRSS, ARTICLE_INTERVAL);
+	timer(replacArticle, REPLACE_INTERVAL);
 
 	onMount(async () => {
 		fetchRSS();
-		return () => {
-			clearInterval(interval);
-			clearInterval(timeInterval);
-		};
 	});
 </script>
 
 {#if articles.length}
-	<h3>{articles[articleIndex].title}</h3>
-	<p>{articles[articleIndex].description}</p>
+	<!-- <h1 class="text-2xl text-center">News</h1> -->
+	<h3 class="text-xl my-2">{articles[articleIndex].title}:</h3>
+	<p class="text-gray-800">{articles[articleIndex].description}</p>
 {/if}

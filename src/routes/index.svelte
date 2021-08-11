@@ -4,9 +4,18 @@
 	import Weather from '$lib/Weather.svelte';
 </script>
 
-<h1>Magic Mirror</h1>
+<div class="grid grid-cols-4 grid-rows-4 p-12 h-screen gap-3">
+	<section class="col-span-2">
+		<Clock />
+	</section>
 
-<Clock />
-<Rss />
+	<section class="row-start-2 row-span-2 col-start-2 col-span-2 flex items-center justify-center">
+		<!-- <div class="h-80 w-80 m-auto"> -->
+		<Weather />
+		<!-- </div> -->
+	</section>
 
-<Weather />
+	<section class="row-start-4 col-span-full flex flex-col justify-end">
+		<Rss />
+	</section>
+</div>
