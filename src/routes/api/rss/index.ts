@@ -7,7 +7,8 @@ export async function get(): Promise<EndpointOutput> {
 	const res = await fetch(variables.RSS_URL);
 	const xml = await res.text();
 
-	const rss = xml2json.toJson(xml);
+	const rssJSON = xml2json.toJson(xml);
+	const { rss } = JSON.parse(rssJSON);
 
 	return {
 		body: {

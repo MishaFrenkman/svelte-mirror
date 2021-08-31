@@ -18,8 +18,7 @@
 
 	const fetchRSS = async () => {
 		const response = await fetch('/api/rss');
-		const body = await response.json();
-		const { rss } = JSON.parse(body.rss);
+		const { rss } = await response.json();
 
 		articles = rss.channel.item;
 		articleIndex = 0;
